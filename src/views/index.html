@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+      <meta name="apple-mobile-web-app-title" content="Sirena Riot" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <link rel="apple-touch-icon" sizes="76x76" href="images/icon_76.png" />
+      <link rel="apple-touch-icon" sizes="120x120" href="images/icon_120.png" />
+      <link rel="apple-touch-icon" sizes="152x152" href="images/icon_152.png" />
+
+      <link rel="apple-touch-startup-image" href="images/iphone-startup.png" />
+      <link
+        rel="apple-touch-startup-image"
+        href="images/ipad-landscape-startup.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"
+      />
+      <link
+        rel="apple-touch-startup-image"
+        href="images/iphone-startup1.png"
+        media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"
+      />
+
+      <link rel="icon" type="image/png" href="/images/icon_16.png" sizes="16x16" />
+      <link rel="icon" type="image/png" href="/images/icon_32.png" sizes="32x32" />
+      <link rel="icon" type="image/png" href="/images/icon_64.png" sizes="64x64" />
+
+      <!-- android -->
+      <meta name="mobile-web-app-capable" content="yes" />
+      <link rel="manifest" href="/manifest.json" />
+
+      <title>Sirena Riot</title>
+      <link rel="stylesheet" href="/fonts/fonts_style.css" />
+      <link rel="stylesheet" href="/css/style.css" />
+    </head>
+  </head>
+  <body>
+    <!-- <div class="container blackout"></div> -->
+
+    <!-- msg_view -->
+    <div class="container msg_view">
+      <div class="flex_box_msg">
+        <p class="msg_drop">Este es un mensaje desde el servidor</p>
+      </div>
+    </div>
+
+    <!-- config siren -->
+    <div class="container config_siren_view">
+      <nav class="nav">
+        <span class="icon-chevron-left" id="back_config_siren"></span>
+      </nav>
+      <h2>configuración botón de pánico</h2>
+      <span class="msg"></span>
+      <form action="">
+        <!-- <label for="config_button_name">Nombre *</label>
+        <input type="text" placeholder="departamento" id="config_button_name" /> -->
+        <label for="config_button_address">Dirección *</label>
+        <input type="text" placeholder="Diego Vaca N32 y José Olmedo, conjunto Alborada, casa 13" id="config_button_address" />
+        <label for="config_siren_id">id_sirena *</label>
+        <input type="text" id="config_siren_id" />
+        <button type="submit" id="button_config_siren">GUARDAR</button>
+      </form>
+    </div>
+
+    <!-- new siren -->
+    <div class="container new_siren_view">
+      <nav class="nav">
+        <span class="icon-chevron-left" id="back_new_siren"></span>
+      </nav>
+      <h2>Nueva Sirena</h2>
+      <span class="msg"></span>
+      <form action="">
+        <label for="siren_name">Nombre Sirena *</label>
+        <input type="text" id="siren_name" />
+        <label for="siren_address">Dirección *</label>
+        <input type="text" id="siren_address" />
+        <label for="siren_id">id_sirena *</label>
+        <input type="text" id="siren_id" />
+        <button type="submit" id="button_new_siren">AGREGAR</button>
+      </form>
+    </div>
+
+    <!-- button -->
+    <div class="container button_view">
+      <div class="nav">
+        <!-- <span class="icon-chevron-left" id="back_button"></span> -->
+        <span class="icon-user" id="account-icon"></span>
+        <span class="icon-cog" id="config_button"></span>
+      </div>
+      <span class="msg"></span>
+      <!-- <h2 id="siren_button_name">Nombre Sirena</h2> -->
+      <span class="icon-power_settings_new" id="siren_button"></span>
+      <h5 class="siren_status" id="siren_status">sirena desactivada</h5>
+    </div>
+
+    <!-- config mobile device -->
+    <div class="container config_device_view">
+      <nav class="nav">
+        <span class="icon-chevron-left" id="back_config_mobile"></span>
+      </nav>
+      <h2>Configuración</h2>
+      <form action="">
+        <label for="config_name_device">Nombre *</label>
+        <input type="text" id="config_name_device" />
+        <label for="config_number_device">Teléfono *</label>
+        <input type="text" id="config_number_device" />
+        <span class="msg"></span>
+        <button type="submit" id="button_config_mobile">GUARDAR</button>
+      </form>
+    </div>
+
+    <!-- profile -->
+    <div class="container profile_view">
+      <nav class="nav">
+        <span class="icon-chevron-left" id="back_profile"></span>
+      </nav>
+      <h2>Cuenta</h2>
+      <span class="icon-user1"></span>
+      <h3 class="spa" id="account_prof">example@email.com</h3>
+      <h4 id="device_name_prof">DISPOSITIVO</h4>
+      <!-- <button class="button_global button_white" id="button_prof_conf">CONFIGURACIÓN</button> -->
+      <!-- <button class="button_global button_white" id="button_prof_dev">MIS DISPOSITIVOS</button> -->
+      <button class="button_global button_dark" id="button_prof_close">CERRAR SESIÓN</button>
+    </div>
+
+    <!-- device_name -->
+    <div class="container device_view">
+      <spam class="spam2">
+        asigna un nombre y un número telefónico a este dispositivo móvil
+      </spam>
+      <span class="msg"></span>
+      <form action="">
+        <label for="name_device">Nombre *</label>
+        <input type="text" id="name_device" />
+        <label for="number_device">Teléfono *</label>
+        <input type="text" id="number_device" />
+        <button type="submit" id="button_device">INGRESAR</button>
+      </form>
+    </div>
+
+    <!-- succesfull -->
+    <div class="container success_view">
+      <div class="init">
+        <svg class="success" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.25 8.891l-1.421-1.409-6.105 6.218-3.078-2.937-1.396 1.436 4.5 4.319 7.5-7.627z"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <!-- error -->
+    <div class="container error_view">
+      <div class="init">
+        <span class="spam2 msgbig">ocurrio un error inténtalo mas tarde</span>
+      </div>
+    </div>
+
+    <!-- loading -->
+    <div class="container loading_view">
+      <div class="init">
+        <svg class="loading-circle">
+          <circle cx="30" cy="30" r="30"></circle>
+        </svg>
+      </div>
+    </div>
+    <!-- post-lost_pass -->
+    <div class="container post_lost_pass_view">
+      <div class="init">
+        <spam class="spam">
+          los pasos para recuperar tu cuenta han sido enviados a <span id="post_lost_pass_email"></span>
+        </spam>
+        <button class="button_global button_dark" id="button_lost_pass_post">ENTENDIDO</button>
+      </div>
+    </div>
+    <!-- lost-password -->
+    <div class="container lost_pass_view">
+      <nav class="nav">
+        <span class="icon-chevron-left" id="back_lost_pass"></span>
+      </nav>
+      <spam class="spam">
+        ingresa el correo electrónico de tu cuenta, recuerda que al cambiar tu contraseña, todas tus sesiones seran cerradas
+      </spam>
+      <span class="msg"></span>
+      <form action="">
+        <label for="email_lost_pass">Correo *</label>
+        <input type="text" id="email_lost_pass" />
+        <button type="submit" id="button_lost_pass">SIGUIENTE</button>
+      </form>
+    </div>
+    <!-- post-register -->
+    <div class="container post_register_view">
+      <div class="init">
+        <spam class="spam">
+          Hola <span id="registered_firstname"></span>, un correo de activación a sido enviado a <span id="registered_email"></span>
+        </spam>
+        <button class="button_global button_dark" id="button_reg_post">ENTENDIDO</button>
+      </div>
+    </div>
+    <!-- main -->
+    <div class="container main_view">
+      <div class="init">
+        <h1>Sirena Riot</h1>
+        <button class="button_global button_white" id="button_log_init">INICIA SESIÓN</button>
+        <button class="button_global button_dark" id="button_reg_init">REGÍSTRATE</button>
+      </div>
+    </div>
+    <!-- register -->
+    <div class="container register_view">
+      <nav class="nav">
+        <span class="icon-chevron-left" id="back_register"></span>
+      </nav>
+      <h2>Regístrate</h2>
+      <span class="msg"></span>
+      <form action="" method="POST" id="form_reg">
+        <div class="div">
+          <div class="div2">
+            <label for="firstname_reg">Nombre *</label>
+            <input type="text" id="firstname_reg" />
+          </div>
+          <div class="div2">
+            <label for="lastname_reg">Apellido *</label>
+            <input type="text" id="lastname_reg" />
+          </div>
+        </div>
+        <label for="email_reg">Correo *</label>
+        <input type="text" id="email_reg" />
+        <label for="pass_reg">Contraseña *</label>
+        <input type="text" id="pass_reg" />
+        <div class="div5">
+          <input type="checkbox" id="accept_terms" />
+          <span class="accept_terms">Acepto términos y condiciones</span>
+        </div>
+
+        <button type="submit" id="button_reg" form="form_reg">CREAR CUENTA</button>
+      </form>
+    </div>
+
+    <!-- login -->
+    <div class="container login_view">
+      <nav class="nav">
+        <span class="icon-chevron-left" id="back_login"></span>
+      </nav>
+      <h2>Inicia Sesión</h2>
+      <span class="msg"></span>
+      <form action="" method="POST" id="form_log">
+        <label for="email_log">Correo *</label>
+        <input type="text" id="email_log" />
+        <label for="pass_log">Contraseña *</label>
+        <input type="password" id="pass_log" />
+        <button type="submit" id="button_log">SIGUIENTE</button>
+        <span class="lost_pass" id="lost_pass_link">¿olvidaste tu contraseña?</span>
+      </form>
+    </div>
+
+    <!-- siren_list -->
+    <div class="container siren_list_view">
+      <div class="grid_box">
+        <h1 class="flex_box">Sirenas</h1>
+        <div class="list list1" id="list"></div>
+        <nav class="nav">
+          <!-- <span class="icon-user" id="account-icon"></span> -->
+          <span class="icon-add" id="add-item-icon"></span>
+          <span class="icon-refresh" id="refresh-icon"></span>
+        </nav>
+      </div>
+    </div>
+
+    <!-- sesions list -->
+    <div class="container sessions_view">
+      <nav class="nav">
+        <span class="icon-chevron-left" id="back_sessions"></span>
+      </nav>
+      <h2>Sesiones</h2>
+      <span class="spam3">2 de 3 dispositivos han iniciado sesión</span>
+      <div class="list_sessions">
+        <div class="iatem_1">
+          android ip 184.43.32.184
+        </div>
+        <div class="iatem_2">
+          iphone ip 186.143.22.127
+        </div>
+        <div class="iatem_3">
+          android ip 184.43.32.184
+        </div>
+        <div class="iatem_4">
+          iphone ip 186.143.22.127
+        </div>
+        <div class="iatem_5">
+          android ip 184.43.32.184
+        </div>
+        <div class="iatem_6">
+          iphone ip 186.143.22.127
+        </div>
+      </div>
+    </div>
+
+    <!-- terms view -->
+    <div class="container terms_view">
+      <nav class="nav">
+        <span class="icon-chevron-left" id="back_terms"></span>
+      </nav>
+      <h2>Términos y condiciones</h2>
+      <span class="terms_text">1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga similique saepe dolore reprehenderit repellat odio pariatur iusto eum vitae fugit, aliquam voluptatibus autem quibusdam? Aspernatur dolorum in ipsa animi enim.</span>
+      <span class="terms_text">2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga similique saepe dolore reprehenderit repellat odio pariatur iusto eum vitae fugit, aliquam voluptatibus autem quibusdam? Aspernatur dolorum in ipsa animi enim.</span>
+      <span class="terms_text">3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga similique saepe dolore reprehenderit repellat odio pariatur iusto eum vitae fugit, aliquam voluptatibus autem quibusdam? Aspernatur dolorum in ipsa animi enim.</span>
+      <span class="terms_text">4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga similique saepe dolore reprehenderit repellat odio pariatur iusto eum vitae fugit, aliquam voluptatibus autem quibusdam? Aspernatur dolorum in ipsa animi enim.</span>
+      <span class="terms_text">5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga similique saepe dolore reprehenderit repellat odio pariatur iusto eum vitae fugit, aliquam voluptatibus autem quibusdam? Aspernatur dolorum in ipsa animi enim.</span>
+      <span class="terms_text">6 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga similique saepe dolore reprehenderit repellat odio pariatur iusto eum vitae fugit, aliquam voluptatibus autem quibusdam? Aspernatur dolorum in ipsa animi enim.</span>
+    </div>
+
+    <!-- service worker -->
+    <!-- <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+          navigator.serviceWorker.register("js/sw.js").then(
+            function(registration) {
+              // Si es exitoso
+              // console.log("SW registrado correctamente");
+            },
+            function(err) {
+              // Si falla
+              console.log("SW fallo");
+            }
+          );
+        });
+      }
+    </script> -->
+
+    <!--jQuery-->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/js/views.js" defer></script>
+    <script src="/js/validations.js" defer></script>
+    <script src="/js/events.js" defer></script>
+    <script src="/js/app.js" defer></script>
+  </body>
+</html>

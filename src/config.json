@@ -1,0 +1,16 @@
+{
+  "PORT": 2041,
+  "PORT_public": 2041,
+  "mongodb_url": "mongodb://riot2:riot2018@registros-shard-00-00-nace5.mongodb.net:27017,registros-shard-00-01-nace5.mongodb.net:27017,registros-shard-00-02-nace5.mongodb.net:27017/test?ssl=true&replicaSet=registros-shard-0&authSource=admin&retryWrites=true&w=majority",
+  "riot_email": "riotapp2@gmail.com",
+  "riot_pass": "riot2018.",
+  "mongodb_collection_accounts": "users",
+  "mongodb_collection_sirens": "sirens",
+  "firebase_url": "https://sirenacomunitaria.firebaseio.com",
+  "firebase_collection": "cotocollao",
+  "jwt_key": "hnnu87HN7jNIJMBGg7723-dev",
+  "telegram_API_TOKEN": "1019965012:AAEwYGAMq_gNRn_Gfknhth0JgQyH41asrlo",
+  "sendgrid_API_TOKEN": "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",
+  "domain": "http://192.168.1.37",
+  "app_path": "sirena-riot" 
+}
