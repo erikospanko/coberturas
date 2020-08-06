@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 // routes
-app.use(`/${config.app_path}`, require('./routes/routes'));
+app.use(`/`, require('./routes/routes'));
 
 // static files
 app.use(express.static(path.join(__dirname, 'public')));

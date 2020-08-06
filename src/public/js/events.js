@@ -22,6 +22,7 @@ $("#lost_pass_link").click(function() {
 
 $("#button_log").on("click", e => {
   e.preventDefault();
+  $("#button_log").prop('disabled', true);
   let device_match = deviceMatch(navigator.userAgent);
   let form = [];
   let result = {};
@@ -38,6 +39,7 @@ $("#button_log").on("click", e => {
 
   if (valid) {
     errorMsgSpam(valid);
+    $("#button_log").prop('disabled', false);
   } else if (valid == false) {
     $.ajax({
       url: `${path_app}/login`,
@@ -48,6 +50,7 @@ $("#button_log").on("click", e => {
           solo_view(".loading_view");
           setTimeout(() => {
             errorWindow(`${fromServer.error}`, ".login_view", 2);
+            $("#button_log").prop('disabled', false);
           }, 1000);
         } else if (fromServer.session_id) {
           solo_view(".loading_view");
@@ -57,11 +60,13 @@ $("#button_log").on("click", e => {
             clear();
             localStorage.setItem("session_app_id", fromServer.session_id);
             localStorage.setItem("email_account", result.email);
+            $("#button_log").prop('disabled', false);
           }, 1000);
         }
       },
       error: function(err) {
         errorWindow("el servidor no responde", ".login_view", 2);
+        $("#button_log").prop('disabled', false);
       }
     });
   }
@@ -75,6 +80,7 @@ $("#back_register").click(function() {
 
 $("#button_reg").on("click", e => {
   e.preventDefault();
+  $("#button_reg").prop('disabled', true);
   let form = [];
   let result = {};
   let key = ["firstname", "lastname", "email", "password", "terms"];
@@ -91,6 +97,7 @@ $("#button_reg").on("click", e => {
 
   if (valid) {
     errorMsgSpam(valid);
+    $("#button_reg").prop('disabled', false);
   } else if (valid == false) {
     $.ajax({
       url: `${path_app}/register`,
@@ -101,6 +108,7 @@ $("#button_reg").on("click", e => {
           solo_view(".loading_view");
           setTimeout(() => {
             errorWindow(`${fromServer.error}`, ".register_view", 2);
+            $("#button_reg").prop('disabled', false);
           }, 1000);
         } else if (fromServer.registered == true) {
           solo_view(".loading_view");
@@ -108,12 +116,14 @@ $("#button_reg").on("click", e => {
             $("#registered_firstname").text(result.firstname);
             $("#registered_email").text(result.email);
             solo_view(".post_register_view");
+            $("#button_reg").prop('disabled', false);
             clear();
           }, 1000);
         }
       },
       error: function(err) {
         errorWindow("el servidor no responde", ".register_view", 2);
+        $("#button_reg").prop('disabled', false);
       }
     });
   }
@@ -127,10 +137,12 @@ $("#back_lost_pass").click(function() {
 
 $("#button_lost_pass").on("click", e => {
   e.preventDefault();
+  $("#button_lost_pass").prop('disabled', true);
   let lost_email = $("#email_lost_pass").val();
   if (!emailRegex.test(lost_email)) {
     test = "* email no válido";
     errorMsgSpam(test);
+    $("#button_lost_pass").prop('disabled', false);
   } else {
     $.ajax({
       url: `${path_app}/lost_pass`,
@@ -141,16 +153,19 @@ $("#button_lost_pass").on("click", e => {
           solo_view(".loading_view");
           setTimeout(() => {
             errorWindow(`${fromServer.error}`, ".lost_pass_view", 2);
+            $("#button_lost_pass").prop('disabled', false);
           }, 1000);
         } else if (fromServer.sent) {
           clear();
           $("#post_lost_pass_email").text(lost_email);
           solo_view(".post_lost_pass_view");
+          $("#button_lost_pass").prop('disabled', false);
         }
       },
       error: function(err) {
         $(".msg").text("");
         errorWindow("el servidor no responde", ".lost_pass_view", 2);
+        $("#button_lost_pass").prop('disabled', false);
       }
     });
   }
@@ -171,6 +186,7 @@ $("#button_reg_post").click(function() {
 ////////device_view................................
 $("#button_device").on("click", e => {
   e.preventDefault();
+  $("#button_device").prop('disabled', true);
   let device_name = $("#name_device").val();
   let phone_number = $("#number_device").val();
   let test;
@@ -178,9 +194,11 @@ $("#button_device").on("click", e => {
   if (!deviceNameRegex.test(device_name)) {
     test = "* nombre del dispositivo no válido";
     errorMsgSpam(test);
+    $("#button_device").prop('disabled', false);
   } else if (!phoneRegex.test(phone_number)) {
     test = "* número no válido";
     errorMsgSpam(test);
+    $("#button_device").prop('disabled', false);
   } else {
     let result = {
       session_id: localStorage.getItem("session_app_id"),
@@ -196,6 +214,7 @@ $("#button_device").on("click", e => {
           solo_view(".loading_view");
           setTimeout(() => {
             errorWindow(`${fromServer.error}`, ".device_view", 2);
+            $("#button_device").prop('disabled', false);
           }, 1000);
         } else if (fromServer.created) {
           clear();
@@ -204,11 +223,13 @@ $("#button_device").on("click", e => {
           audio.play();
           setTimeout(() => {
             solo_view(".button_view");
+            $("#button_device").prop('disabled', false);
           }, 2000);
         }
       },
       error: function(err) {
         errorWindow("el servidor no responde", ".device_view", 2);
+        $("#button_device").prop('disabled', false);
       }
     });
   }
@@ -251,7 +272,7 @@ $("#button_prof_dev").click(function() {
 $("#button_prof_close").click(function() {
   clear();
   let session_id = localStorage.getItem("session_app_id");
-
+  $("#button_prof_close").prop('disabled', true);
   $.ajax({
     url: `${path_app}/session-del`,
     method: "POST",
@@ -261,6 +282,7 @@ $("#button_prof_close").click(function() {
         solo_view(".loading_view");
         localStorage.clear();
         solo_view(".main_view");
+        $("#button_prof_close").prop('disabled', false);
       } else if (fromServer.clear) {
         clear();
         localStorage.clear();
@@ -268,11 +290,13 @@ $("#button_prof_close").click(function() {
         audio.play();
         setTimeout(() => {
           solo_view(".main_view");
+          $("#button_prof_close").prop('disabled', false);
         }, 2000);
       }
     },
     error: function(err) {
       errorWindow("el servidor no responde", ".profile_view", 2);
+      $("#button_prof_close").prop('disabled', false);
     }
   });
 
@@ -337,12 +361,13 @@ $("#back_button").click(function() {
 
 $("#config_button").click(function() {
   //clear();
-  console.log("config in");
+  //console.log("config in");
   initialAjax();
   solo_view(".config_siren_view");
 });
 
 $("#siren_button").click(function() {
+  $("#siren_button").prop('disabled', true);
   let session_id = localStorage.getItem("session_app_id");
   solo_view(".loading_view");
   if ($("#siren_button").hasClass("on")) {
@@ -359,9 +384,11 @@ $("#siren_button").click(function() {
           $("#siren_button").removeClass("on");
           $("#siren_status").text("sirena desactivada");
         }
+        $("#siren_button").prop('disabled', false);
       },
       error: function(err) {
         errorMsgSpam("el servidor no responde");
+        $("#siren_button").prop('disabled', false);
       }
     });
   } else {
@@ -378,9 +405,11 @@ $("#siren_button").click(function() {
           $("#siren_button").addClass("on");
           $("#siren_status").text("sirena activada");
         }
+        $("#siren_button").prop('disabled', false);
       },
       error: function(err) {
         errorMsgSpam("el servidor no responde");
+        $("#siren_button").prop('disabled', false);
       }
     });
   }
@@ -394,6 +423,7 @@ $("#back_config_siren").click(function() {
 
 $("#button_config_siren").on("click", e => {
   e.preventDefault();
+  $("#button_config_siren").prop('disabled', true);
   let button_address = $("#config_button_address").val();
   // let button_name = $("#config_button_name").val();
   let siren_id = $("#config_siren_id")
@@ -403,9 +433,11 @@ $("#button_config_siren").on("click", e => {
   if (!deviceNameRegex.test(button_address)) {
     test = "* dirección no válida";
     errorMsgSpam(test);
+    $("#button_config_siren").prop('disabled', false);
   } else if (!sirenIdRegex.test(siren_id)) {
     test = "* id_sirena no válido";
     errorMsgSpam(test);
+    $("#button_config_siren").prop('disabled', false);
     // } else if (!deviceNameRegex.test(button_name)) {
     //   test = "* nombre no válido";
     //   errorMsgSpam(test);
@@ -426,6 +458,7 @@ $("#button_config_siren").on("click", e => {
           solo_view(".loading_view");
           setTimeout(() => {
             errorWindow(`${fromServer.error}`, ".config_siren_view", 2);
+            $("#button_config_siren").prop('disabled', false);
           }, 1000);
         } else if (fromServer.config) {
           clear();
@@ -433,11 +466,13 @@ $("#button_config_siren").on("click", e => {
           audio.play();
           setTimeout(() => {
             solo_view(".button_view");
+            $("#button_config_siren").prop('disabled', false);
           }, 2000);
         }
       },
       error: function(err) {
         errorWindow("el servidor no responde", ".config_siren_view", 2);
+        $("#button_config_siren").prop('disabled', false);
       }
     });
   }
